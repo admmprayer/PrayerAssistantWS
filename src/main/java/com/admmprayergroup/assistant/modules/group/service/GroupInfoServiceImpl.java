@@ -2,6 +2,7 @@ package com.admmprayergroup.assistant.modules.group.service;
 
 import com.admmprayergroup.assistant.modules.group.ArchdiocesanGroup;
 import com.admmprayergroup.assistant.modules.group.GroupRepository;
+import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,19 +25,18 @@ public class GroupInfoServiceImpl implements GroupInfoService {
     }
 
     @Override
-    public ArchdiocesanGroup getOneGroup(Long groupID) {
+    public PrayerInfoResponse getOneGroup(Long groupID) throws Exception {
         Optional<ArchdiocesanGroup> groupPack = groupRepository.findById(groupID);
-        return groupPack.orElse(null);
+        if (groupPack.isEmpty())
+            throw new Exception("Group Not available in given ID");
+        PrayerInfoResponse prayerInfoResponse = new PrayerInfoResponse();
+        prayerInfoResponse.setGroupInfo(groupPack.get());
+        return prayerInfoResponse;
     }
 
     @Override
-    public void saveGroupDetails(ArchdiocesanGroup archdiocesanGroup) {
-        groupRepository.save(archdiocesanGroup);
-    }
-
-    @Override
-    public void updateGroupDetails(ArchdiocesanGroup archdiocesanGroup) {
-        groupRepository.save(archdiocesanGroup);
+    public ArchdiocesanGroup saveGroupDetails(ArchdiocesanGroup archdiocesanGroup) {
+        return groupRepository.save(archdiocesanGroup);
     }
 
     @Override

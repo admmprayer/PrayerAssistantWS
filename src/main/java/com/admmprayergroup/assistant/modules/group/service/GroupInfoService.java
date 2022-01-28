@@ -1,6 +1,7 @@
 package com.admmprayergroup.assistant.modules.group.service;
 
 import com.admmprayergroup.assistant.modules.group.ArchdiocesanGroup;
+import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
 
 import java.util.List;
 
@@ -8,11 +9,9 @@ public interface GroupInfoService {
 
     List<ArchdiocesanGroup> getAllGroupDetails();
 
-    ArchdiocesanGroup getOneGroup(Long groupID);
+    PrayerInfoResponse getOneGroup(Long groupID) throws Exception;
 
-    void saveGroupDetails(ArchdiocesanGroup archdiocesanGroup);
-
-    void updateGroupDetails(ArchdiocesanGroup archdiocesanGroup);
+    ArchdiocesanGroup saveGroupDetails(ArchdiocesanGroup archdiocesanGroup);
 
     void deleteGroupDetails(Long groupID);
 

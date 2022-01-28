@@ -1,8 +1,9 @@
 package com.admmprayergroup.assistant.controllers;
 
-import com.admmprayergroup.assistant.modules.parish.Parish;
+import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
+import com.admmprayergroup.assistant.modules.parish.dto.models.Parish;
 import com.admmprayergroup.assistant.modules.parish.service.ParishInfoService;
-import com.admmprayergroup.assistant.vo.Constants;
+import com.admmprayergroup.assistant.vo.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,26 +24,26 @@ public class ParishController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Parish> getOneParishInfo(@PathVariable("id") Long parishID) {
+    public ResponseEntity<PrayerInfoResponse> getOneParishInfo(@PathVariable("id") Long parishID) throws Exception {
         return ResponseEntity.ok(parishInfoService.getOneParish(parishID));
     }
 
     @PostMapping
     public ResponseEntity<HttpStatus> saveParishInfo(@RequestBody Parish parish) {
         parishInfoService.saveParishDetails(parish);
-        return Constants.CREATED;
+        return AppUtils.ACCEPTED;
     }
 
     @PatchMapping
     public ResponseEntity<HttpStatus> updateParishInfo(@RequestBody Parish parish) {
         parishInfoService.updateParishDetails(parish);
-        return Constants.CREATED;
+        return AppUtils.ACCEPTED;
     }
 
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteOneParishInfo(@RequestHeader("parish-id") Long parishID) {
         parishInfoService.deleteParishDetails(parishID);
-        return Constants.CREATED;
+        return AppUtils.ACCEPTED;
     }
 
 }

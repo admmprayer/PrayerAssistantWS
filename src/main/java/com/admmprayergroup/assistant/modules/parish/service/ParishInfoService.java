@@ -1,6 +1,7 @@
 package com.admmprayergroup.assistant.modules.parish.service;
 
-import com.admmprayergroup.assistant.modules.parish.Parish;
+import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
+import com.admmprayergroup.assistant.modules.parish.dto.models.Parish;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface ParishInfoService {
 
     List<Parish> getAllParishDetails();
 
-    Parish getOneParish(Long parishID);
+    PrayerInfoResponse getOneParish(Long parishID) throws Exception;
 
     void saveParishDetails(Parish parish);
 

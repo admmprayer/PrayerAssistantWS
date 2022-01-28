@@ -1,8 +1,9 @@
-package com.admmprayergroup.assistant.modules.parish;
+package com.admmprayergroup.assistant.modules.parish.dto.models;
 
-import com.admmprayergroup.assistant.modules.vicariate.Vicariate;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity

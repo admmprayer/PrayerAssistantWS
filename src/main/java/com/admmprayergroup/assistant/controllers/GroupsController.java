@@ -2,7 +2,8 @@ package com.admmprayergroup.assistant.controllers;
 
 import com.admmprayergroup.assistant.modules.group.ArchdiocesanGroup;
 import com.admmprayergroup.assistant.modules.group.service.GroupInfoService;
-import com.admmprayergroup.assistant.vo.Constants;
+import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
+import com.admmprayergroup.assistant.vo.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,26 +24,20 @@ public class GroupsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArchdiocesanGroup> getOneGroupInfo(@PathVariable("id") Long groupID) {
+    public ResponseEntity<PrayerInfoResponse> getOneGroupInfo(@PathVariable("id") Long groupID) throws Exception {
         return ResponseEntity.ok(groupInfoService.getOneGroup(groupID));
     }
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> saveGroupInfo(@RequestBody ArchdiocesanGroup archdiocesanGroup) {
-        groupInfoService.saveGroupDetails(archdiocesanGroup);
-        return Constants.CREATED;
-    }
-
-    @PatchMapping
-    public ResponseEntity<HttpStatus> updateGroupInfo(@RequestBody ArchdiocesanGroup archdiocesanGroup) {
-        groupInfoService.updateGroupDetails(archdiocesanGroup);
-        return Constants.CREATED;
+    @PutMapping
+    public ResponseEntity<ArchdiocesanGroup> saveOrUpdateGroupInfo(@RequestBody ArchdiocesanGroup archdiocesanGroup) {
+        ArchdiocesanGroup group = groupInfoService.saveGroupDetails(archdiocesanGroup);
+        return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteOneGroupInfo(@RequestHeader("group-id") Long groupID) {
         groupInfoService.deleteGroupDetails(groupID);
-        return Constants.CREATED;
+        return AppUtils.ACCEPTED;
     }
 
 }
