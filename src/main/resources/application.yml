@@ -1,10 +1,18 @@
 spring:
+  application:
+    name: Prayer Assistant
+    desc: Webservice which provides assistance for the Executive team of St. Mary's Archdiocesan Prayer Group to allocate/ deallocate the slots for the parish youths under Archdiocese of Madras - Mylapore
   profiles:
     active: ${PROFILE:local}
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+company:
+  name: Bl. Carlo Tech Group
+  website: nil
+  email: admmprayer@gmail.com
 
 logging:
   level:
