@@ -9,19 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/parish")
 public class ParishController {
 
     @Autowired
     private ParishInfoService parishInfoService;
-
-    @GetMapping
-    public ResponseEntity<List<Parish>> getAllParishInfo() {
-        return ResponseEntity.ok(parishInfoService.getAllParishDetails());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PrayerInfoResponse> getOneParishInfo(@PathVariable("id") Long parishID) throws Exception {

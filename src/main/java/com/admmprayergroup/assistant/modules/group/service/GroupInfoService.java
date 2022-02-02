@@ -3,8 +3,6 @@ package com.admmprayergroup.assistant.modules.group.service;
 import com.admmprayergroup.assistant.modules.group.ArchdiocesanGroup;
 import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
 
-import java.util.List;
-
 public interface GroupInfoService {
 
     PrayerInfoResponse getOneGroup(Long groupID) throws Exception;

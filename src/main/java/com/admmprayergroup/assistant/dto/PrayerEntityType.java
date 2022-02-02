@@ -1,5 +1,5 @@
 package com.admmprayergroup.assistant.dto;
 
-public enum EntityType {
+public enum PrayerEntityType {
     PARISH, VICARIATE, GROUP
 }

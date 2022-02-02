@@ -1,6 +1,6 @@
 package com.admmprayergroup.assistant.modules.prayer.service;
 
-import com.admmprayergroup.assistant.dto.EntityType;
+import com.admmprayergroup.assistant.dto.PrayerEntityType;
 import com.admmprayergroup.assistant.dto.PrayerResponse;
 import com.admmprayergroup.assistant.dto.models.PrayerSlot;
 import com.admmprayergroup.assistant.vo.AppUtils;
@@ -19,17 +19,17 @@ import java.util.stream.Collectors;
 public class PrayerServiceImpl implements PrayerService {
 
     @Autowired
-    private FirestoreDocument firestoreDoc;
+    private FirestoreDocument firestoreDocument;
 
     @Autowired
     private AppUtils appUtils;
 
 
     @Override
-    public List<PrayerResponse> getCompletedPrayerSlots(String id, EntityType entityType) throws Exception {
-        String celebrateID = this.updateIDWithEntityType(id, entityType);
+    public List<PrayerResponse> getCompletedPrayerSlots(String id, PrayerEntityType prayerEntityType) throws Exception {
+        String celebrateID = appUtils.updateIDWithEntityType(id, prayerEntityType);
 
-        Query completedPrayerSlotsQuery = firestoreDoc.getDB()
+        Query completedPrayerSlotsQuery = firestoreDocument.getDB()
                 .collection(FirestoreDocument.COLLECTION_PRAYER_SLOT)
                 .whereEqualTo(FirestoreDocument.DOC_CELEBRATE_ID, celebrateID)
                 .whereLessThan(FirestoreDocument.DOC_DATE, Timestamp.now())
@@ -40,10 +40,10 @@ public class PrayerServiceImpl implements PrayerService {
     }
 
     @Override
-    public List<PrayerResponse> getDuePrayerSlots(String id, EntityType entityType) throws Exception {
-        String celebrateID = this.updateIDWithEntityType(id, entityType);
+    public List<PrayerResponse> getDuePrayerSlots(String id, PrayerEntityType prayerEntityType) throws Exception {
+        String celebrateID = appUtils.updateIDWithEntityType(id, prayerEntityType);
 
-        Query completedPrayerSlotsQuery = firestoreDoc.getDB()
+        Query completedPrayerSlotsQuery = firestoreDocument.getDB()
                 .collection(FirestoreDocument.COLLECTION_PRAYER_SLOT)
                 .whereEqualTo(FirestoreDocument.DOC_CELEBRATE_ID, celebrateID)
                 .whereGreaterThan(FirestoreDocument.DOC_DATE, Timestamp.now())
@@ -55,12 +55,12 @@ public class PrayerServiceImpl implements PrayerService {
 
     @Override
     public void savePrayerSlotInformation(PrayerSlot prayerSlot) throws Exception {
-        firestoreDoc.save(FirestoreDocument.COLLECTION_PRAYER_SLOT, prayerSlot.getPrayerSlotID(), prayerSlot);
+        firestoreDocument.save(FirestoreDocument.COLLECTION_PRAYER_SLOT, prayerSlot.getPrayerSlotID(), prayerSlot);
     }
 
     @Override
     public void updatePrayerSlotInformation(PrayerSlot prayerSlot) throws Exception {
-        firestoreDoc.update(FirestoreDocument.COLLECTION_PRAYER_SLOT, prayerSlot.getPrayerSlotID(), prayerSlot);
+        firestoreDocument.update(FirestoreDocument.COLLECTION_PRAYER_SLOT, prayerSlot.getPrayerSlotID(), prayerSlot);
     }
 
     private List<PrayerResponse> convertPrayerModelToResponse(List<QueryDocumentSnapshot> queryDocumentSnapshotList) {
@@ -70,18 +70,5 @@ public class PrayerServiceImpl implements PrayerService {
                         PrayerSlot.class,
                         PrayerResponse.class))
                 .collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    private String updateIDWithEntityType(String id, EntityType entityType) throws Exception {
-        switch (entityType) {
-            case PARISH:
-                return "P".concat(id);
-            case VICARIATE:
-                return "V".concat(id);
-            case GROUP:
-                return "G".concat(id);
-            default:
-                throw new Exception("invalid Entity type");
-        }
     }
 }

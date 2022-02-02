@@ -9,19 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/group")
 public class GroupsController {
 
     @Autowired
     private GroupInfoService groupInfoService;
-
-    @GetMapping
-    public ResponseEntity<List<ArchdiocesanGroup>> getAllGroupInfo() {
-        return ResponseEntity.ok(groupInfoService.getAllGroupDetails());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PrayerInfoResponse> getOneGroupInfo(@PathVariable("id") Long groupID) throws Exception {

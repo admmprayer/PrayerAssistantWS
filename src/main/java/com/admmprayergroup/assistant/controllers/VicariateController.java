@@ -9,19 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/vicariate")
 public class VicariateController {
 
     @Autowired
     private VicariateInfoService vicariateInfoService;
-
-    @GetMapping
-    public ResponseEntity<List<Vicariate>> getAllVicariateInfo() {
-        return ResponseEntity.ok(vicariateInfoService.getAllVicariateDetails());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PrayerInfoResponse> getOneVicariateInfo(@PathVariable("id") Long vicariateID) throws Exception {
@@ -32,18 +25,6 @@ public class VicariateController {
     public ResponseEntity<Vicariate> saveOrUpdateVicariateInfo(@RequestBody Vicariate vicariate) {
         Vicariate vicariateInfo = vicariateInfoService.saveVicariateDetails(vicariate);
         return ResponseEntity.ok(vicariateInfo);
-    }
-
-    @PostMapping
-    public ResponseEntity<HttpStatus> saveVicariateInfo(@RequestBody Vicariate vicariate) {
-        vicariateInfoService.saveVicariateDetails(vicariate);
-        return AppUtils.ACCEPTED;
-    }
-
-    @PatchMapping
-    public ResponseEntity<HttpStatus> updateVicariateInfo(@RequestBody Vicariate vicariate) {
-        vicariateInfoService.updateVicariateDetails(vicariate);
-        return AppUtils.ACCEPTED;
     }
 
     @DeleteMapping
