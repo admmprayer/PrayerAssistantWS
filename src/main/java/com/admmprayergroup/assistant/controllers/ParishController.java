@@ -28,16 +28,10 @@ public class ParishController {
         return ResponseEntity.ok(parishInfoService.getOneParish(parishID));
     }
 
-    @PostMapping
-    public ResponseEntity<HttpStatus> saveParishInfo(@RequestBody Parish parish) {
-        parishInfoService.saveParishDetails(parish);
-        return AppUtils.ACCEPTED;
-    }
-
-    @PatchMapping
-    public ResponseEntity<HttpStatus> updateParishInfo(@RequestBody Parish parish) {
-        parishInfoService.updateParishDetails(parish);
-        return AppUtils.ACCEPTED;
+    @PutMapping
+    public ResponseEntity<Parish> saveOrUpdateParishInfo(@RequestBody Parish parish) {
+        Parish parishInfo = parishInfoService.saveParishDetails(parish);
+        return ResponseEntity.ok(parishInfo);
     }
 
     @DeleteMapping

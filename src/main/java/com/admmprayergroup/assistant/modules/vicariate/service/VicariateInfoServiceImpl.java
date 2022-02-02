@@ -1,6 +1,5 @@
 package com.admmprayergroup.assistant.modules.vicariate.service;
 
-import com.admmprayergroup.assistant.modules.group.ArchdiocesanGroup;
 import com.admmprayergroup.assistant.modules.parish.dto.PrayerInfoResponse;
 import com.admmprayergroup.assistant.modules.vicariate.Vicariate;
 import com.admmprayergroup.assistant.modules.vicariate.VicariateRepository;
@@ -18,14 +17,6 @@ public class VicariateInfoServiceImpl implements VicariateInfoService {
     private VicariateRepository vicariateRepository;
 
     @Override
-    public List<Vicariate> getAllVicariateDetails() {
-        Iterable<Vicariate> vicariate = vicariateRepository.findAll();
-        List<Vicariate> vicariateList = new LinkedList<>();
-        vicariate.forEach(vicariateList::add);
-        return vicariateList;
-    }
-
-    @Override
     public PrayerInfoResponse getOneVicariate(Long vicariateID) throws Exception {
         Optional<Vicariate> vicariatePack = vicariateRepository.findById(vicariateID);
         if (vicariatePack.isEmpty())
@@ -36,13 +27,8 @@ public class VicariateInfoServiceImpl implements VicariateInfoService {
     }
 
     @Override
-    public void saveVicariateDetails(Vicariate vicariate) {
-        vicariateRepository.save(vicariate);
-    }
-
-    @Override
-    public void updateVicariateDetails(Vicariate vicariate) {
-        vicariateRepository.save(vicariate);
+    public Vicariate saveVicariateDetails(Vicariate vicariate) {
+        return vicariateRepository.save(vicariate);
     }
 
     @Override

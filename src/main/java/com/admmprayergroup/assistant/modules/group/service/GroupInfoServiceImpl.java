@@ -17,14 +17,6 @@ public class GroupInfoServiceImpl implements GroupInfoService {
     private GroupRepository groupRepository;
 
     @Override
-    public List<ArchdiocesanGroup> getAllGroupDetails() {
-        Iterable<ArchdiocesanGroup> groups = groupRepository.findAll();
-        List<ArchdiocesanGroup> archdiocesanGroupList = new LinkedList<>();
-        groups.forEach(archdiocesanGroupList::add);
-        return archdiocesanGroupList;
-    }
-
-    @Override
     public PrayerInfoResponse getOneGroup(Long groupID) throws Exception {
         Optional<ArchdiocesanGroup> groupPack = groupRepository.findById(groupID);
         if (groupPack.isEmpty())

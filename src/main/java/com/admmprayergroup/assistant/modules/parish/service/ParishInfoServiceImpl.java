@@ -21,14 +21,6 @@ public class ParishInfoServiceImpl implements ParishInfoService {
     private FirestoreDocument document;
 
     @Override
-    public List<Parish> getAllParishDetails() {
-        Iterable<Parish> parishes = parishRepository.findAll();
-        List<Parish> parishList = new LinkedList<>();
-        parishes.forEach(parishList::add);
-        return parishList;
-    }
-
-    @Override
     public PrayerInfoResponse getOneParish(Long parishID) throws Exception {
         Optional<Parish> parishPack = parishRepository.findById(parishID);
         if (parishPack.isEmpty())
@@ -39,13 +31,8 @@ public class ParishInfoServiceImpl implements ParishInfoService {
     }
 
     @Override
-    public void saveParishDetails(Parish parish) {
-        parishRepository.save(parish);
-    }
-
-    @Override
-    public void updateParishDetails(Parish parish) {
-        parishRepository.save(parish);
+    public Parish saveParishDetails(Parish parish) {
+        return parishRepository.save(parish);
     }
 
     @Override

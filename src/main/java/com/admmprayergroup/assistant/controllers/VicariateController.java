@@ -28,6 +28,12 @@ public class VicariateController {
         return ResponseEntity.ok(vicariateInfoService.getOneVicariate(vicariateID));
     }
 
+    @PutMapping
+    public ResponseEntity<Vicariate> saveOrUpdateVicariateInfo(@RequestBody Vicariate vicariate) {
+        Vicariate vicariateInfo = vicariateInfoService.saveVicariateDetails(vicariate);
+        return ResponseEntity.ok(vicariateInfo);
+    }
+
     @PostMapping
     public ResponseEntity<HttpStatus> saveVicariateInfo(@RequestBody Vicariate vicariate) {
         vicariateInfoService.saveVicariateDetails(vicariate);

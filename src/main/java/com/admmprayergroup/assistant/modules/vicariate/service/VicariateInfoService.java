@@ -7,13 +7,9 @@ import java.util.List;
 
 public interface VicariateInfoService {
 
-    List<Vicariate> getAllVicariateDetails();
-
     PrayerInfoResponse getOneVicariate(Long vicariateID) throws Exception;
 
-    void saveVicariateDetails(Vicariate vicariate);
-
-    void updateVicariateDetails(Vicariate vicariate);
+    Vicariate saveVicariateDetails(Vicariate vicariate);
 
     void deleteVicariateDetails(Long vicariateID);
 

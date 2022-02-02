@@ -7,13 +7,9 @@ import java.util.List;
 
 public interface ParishInfoService {
 
-    List<Parish> getAllParishDetails();
-
     PrayerInfoResponse getOneParish(Long parishID) throws Exception;
 
-    void saveParishDetails(Parish parish);
-
-    void updateParishDetails(Parish parish);
+    Parish saveParishDetails(Parish parish);
 
     void deleteParishDetails(Long parishID);
 
