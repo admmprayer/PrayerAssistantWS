@@ -76,31 +76,6 @@ public class GroupsControllerTest {
                 );
         Mockito.verify(groupInfoService, times(1)).saveGroupDetails(Mockito.any(ArchdiocesanGroup.class));
         Mockito.verifyNoMoreInteractions(groupInfoService);
-
-        // UPDATE
-        group.setGroupHeadName("Regi");
-        group.setGroupHeadPhoneNumber("0011223344");
-
-        Mockito.when(groupInfoService.saveGroupDetails(Mockito.any(ArchdiocesanGroup.class))).thenReturn(group);
-        this.mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/group")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(group))
-                )
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpectAll(
-                        MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)),
-                        MockMvcResultMatchers.jsonPath("$.groupNameEnglish", Matchers.is("St. Mary's Archdiocesan Prayer Group")),
-                        MockMvcResultMatchers.jsonPath("$.groupNameTamil", Matchers.is("அன்னை மரியாள் உயர்மறைமாவட்ட செபக்குழு")),
-                        MockMvcResultMatchers.jsonPath("$.groupHeadName", Matchers.is("Regi")),
-                        MockMvcResultMatchers.jsonPath("$.groupHeadPhoneNumber", Matchers.is("0011223344")),
-                        MockMvcResultMatchers.jsonPath("$.contactPerson1Name", Matchers.nullValue()),
-                        MockMvcResultMatchers.jsonPath("$.contactPerson1PhoneNumber", Matchers.nullValue()),
-                        MockMvcResultMatchers.jsonPath("$.contactPerson2Name", Matchers.nullValue()),
-                        MockMvcResultMatchers.jsonPath("$.contactPerson2PhoneNumber", Matchers.nullValue())
-                );
-        Mockito.verify(groupInfoService, times(2)).saveGroupDetails(Mockito.any(ArchdiocesanGroup.class));
-        Mockito.verifyNoMoreInteractions(groupInfoService);
     }
 
     @Test
