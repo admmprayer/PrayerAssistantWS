@@ -1,8 +1,6 @@
 package com.admmprayergroup.assistant.config;
 
 
-import com.admmprayergroup.assistant.vo.AppUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
