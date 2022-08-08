@@ -1,6 +1,14 @@
 package com.admmprayergroup.assistant.prayerslots.models;
 
-import javax.persistence.*;
+import com.admmprayergroup.assistant.unit.models.Unit;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -16,7 +24,9 @@ public class PrayerSlot {
     private String saintSpeech;
     private String generalSpeech;
     private String gospel;
-    private String celebratorId;
+    @ManyToOne(targetEntity = Unit.class)
+    @JoinColumn(name = "unit_registered_id")
+    private Unit celebrator;
 
     public Long getId() {
         return id;
@@ -66,11 +76,11 @@ public class PrayerSlot {
         this.gospel = gospel;
     }
 
-    public String getCelebratorId() {
-        return celebratorId;
+    public Unit getCelebrator() {
+        return celebrator;
     }
 
-    public void setCelebratorId(String celebratorId) {
-        this.celebratorId = celebratorId;
+    public void setCelebrator(Unit celebrator) {
+        this.celebrator = celebrator;
     }
 }
