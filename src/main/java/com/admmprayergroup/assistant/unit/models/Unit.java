@@ -1,41 +1,38 @@
 package com.admmprayergroup.assistant.unit.models;
 
 import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
-import com.admmprayergroup.assistant.unit.dto.UnitType;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-public class Unit {
+@MappedSuperclass
+public abstract class Unit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
-    private String registeredId;
+
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private UnitType type;
+
     @Column(nullable = false)
     private String inChargePriest;
+
     @Column(nullable = false)
     private String presidentName;
-    @Column(nullable = false, length = 10)
-    private String presidentContactNumber;
+
     @OneToMany(cascade = CascadeType.ALL)
     private Set<PrayerSlot> prayerSlots = new HashSet<>(0);
+
+    @Column(nullable = false, length = 10)
+    private String presidentContactNumber;
 
     public Long getId() {
         return id;
@@ -45,36 +42,12 @@ public class Unit {
         this.id = id;
     }
 
-    public String getRegisteredId() {
-        return registeredId;
-    }
-
-    public void setRegisteredId(String registeredId) {
-        this.registeredId = registeredId;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public UnitType getType() {
-        return type;
-    }
-
-    public void setType(UnitType type) {
-        this.type = type;
-    }
-
-    public String getInChargePriest() {
-        return inChargePriest;
-    }
-
-    public void setInChargePriest(String inChargePriest) {
-        this.inChargePriest = inChargePriest;
     }
 
     public String getPresidentName() {
@@ -91,6 +64,14 @@ public class Unit {
 
     public void setPresidentContactNumber(String presidentContactNumber) {
         this.presidentContactNumber = presidentContactNumber;
+    }
+
+    public String getInChargePriest() {
+        return inChargePriest;
+    }
+
+    public void setInChargePriest(String inChargePriest) {
+        this.inChargePriest = inChargePriest;
     }
 
     public Set<PrayerSlot> getPrayerSlots() {

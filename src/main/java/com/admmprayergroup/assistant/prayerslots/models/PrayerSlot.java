@@ -1,6 +1,6 @@
 package com.admmprayergroup.assistant.prayerslots.models;
 
-import com.admmprayergroup.assistant.unit.models.Unit;
+import com.admmprayergroup.assistant.unit.models.Parish;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +24,9 @@ public class PrayerSlot {
     private String saintSpeech;
     private String generalSpeech;
     private String gospel;
-    @ManyToOne(targetEntity = Unit.class)
+    @ManyToOne(targetEntity = Parish.class)
     @JoinColumn(name = "unit_registered_id")
-    private Unit celebrator;
+    private Parish celebrator;
 
     public Long getId() {
         return id;
@@ -76,11 +76,11 @@ public class PrayerSlot {
         this.gospel = gospel;
     }
 
-    public Unit getCelebrator() {
+    public Parish getCelebrator() {
         return celebrator;
     }
 
-    public void setCelebrator(Unit celebrator) {
+    public void setCelebrator(Parish celebrator) {
         this.celebrator = celebrator;
     }
 }

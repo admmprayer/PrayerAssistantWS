@@ -31,7 +31,6 @@ public class PrayerSlotDTO {
         this.setDayCount(prayerSlot.getDayCount());
         this.setSaintSpeech(prayerSlot.getSaintSpeech());
         this.setGeneralSpeech(prayerSlot.getGeneralSpeech());
-        this.setCelebratorId(prayerSlot.getCelebratorId());
         this.setGospel(prayerSlot.getGospel());
         return this;
     }
@@ -46,7 +45,6 @@ public class PrayerSlotDTO {
         entity.setSaintSpeech(this.getSaintSpeech());
         entity.setGeneralSpeech(this.getGeneralSpeech());
         entity.setGospel(this.getGospel());
-        entity.setCelebratorId(this.getCelebratorId());
         return entity;
     }
 
