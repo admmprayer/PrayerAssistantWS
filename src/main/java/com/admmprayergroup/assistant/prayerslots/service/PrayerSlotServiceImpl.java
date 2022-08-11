@@ -1,6 +1,7 @@
 package com.admmprayergroup.assistant.prayerslots.service;
 
 import com.admmprayergroup.assistant.prayerslots.dto.PrayerSlotDTO;
+import com.admmprayergroup.assistant.prayerslots.exception.NotFoundInDatabaseException;
 import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
 import com.admmprayergroup.assistant.prayerslots.repository.PrayerSlotRepository;
 import org.slf4j.Logger;
@@ -43,7 +44,8 @@ public class PrayerSlotServiceImpl implements PrayerSlotService {
     }
 
     @Override
-    public void updateSlot(LocalDate date, PrayerSlotDTO prayerSlotDTO) {
+    public void updateSlot(LocalDate date, PrayerSlotDTO prayerSlotDTO) throws NotFoundInDatabaseException {
+        LOGGER.info("fetching data to update...");
         Optional<PrayerSlot> prayerSlotOptional = prayerSlotRepository.findByDate(date);
         if (prayerSlotOptional.isPresent()) {
             PrayerSlot prayerSlot = prayerSlotOptional.get();
@@ -62,7 +64,7 @@ public class PrayerSlotServiceImpl implements PrayerSlotService {
             prayerSlotRepository.save(prayerSlot);
             LOGGER.info("Successfully updated prayer slot");
         }
-        // TODO: Throw an exception: cant update unavailable prayer slot
+        throw new NotFoundInDatabaseException(PrayerSlotRepository.class);
     }
 
 }

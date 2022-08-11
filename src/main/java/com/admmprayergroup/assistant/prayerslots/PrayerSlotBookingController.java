@@ -1,6 +1,8 @@
 package com.admmprayergroup.assistant.prayerslots;
 
 import com.admmprayergroup.assistant.prayerslots.dto.PrayerSlotDTO;
+import com.admmprayergroup.assistant.prayerslots.exception.InsufficientParametersException;
+import com.admmprayergroup.assistant.prayerslots.exception.NotFoundInDatabaseException;
 import com.admmprayergroup.assistant.prayerslots.service.PrayerSlotService;
 import com.admmprayergroup.assistant.prayerslots.vo.DateUtils;
 import com.admmprayergroup.assistant.prayerslots.vo.ValidatorUtils;
@@ -24,10 +26,9 @@ public class PrayerSlotBookingController {
 
     @GetMapping
     public ResponseEntity<PrayerSlotDTO> getPrayerSlot(@RequestParam(value = "date", required = false) LocalDate date,
-                                                       @RequestParam(value = "count", required = false) Long dayCount) {
+                                                       @RequestParam(value = "count", required = false) Long dayCount) throws InsufficientParametersException {
         if (ValidatorUtils.isAnyNull(date, dayCount)) {
-            // TODO: throw Exception
-            return ResponseEntity.badRequest().body(new PrayerSlotDTO());
+            throw new InsufficientParametersException();
         }
         PrayerSlotDTO prayerSlotDTO;
         prayerSlotDTO = prayerSlotService.getSlot(Objects.requireNonNullElseGet(date, () -> DateUtils.getDate(dayCount)));
@@ -43,10 +44,9 @@ public class PrayerSlotBookingController {
     @PatchMapping
     public ResponseEntity<Void> getPrayerSlot(@RequestParam(value = "date", required = false) LocalDate date,
                                               @RequestParam(value = "count", required = false) Long dayCount,
-                                              @RequestBody PrayerSlotDTO prayerSlotDTO) {
+                                              @RequestBody PrayerSlotDTO prayerSlotDTO) throws InsufficientParametersException, NotFoundInDatabaseException {
         if (ValidatorUtils.isAnyNull(date, dayCount) || ValidatorUtils.isAnyNull(prayerSlotDTO.getSaintSpeech(), prayerSlotDTO.getGeneralSpeech(), prayerSlotDTO.getGospel())) {
-            // TODO: throw Exception
-            return ResponseEntity.badRequest().build();
+            throw new InsufficientParametersException();
         }
         prayerSlotService.updateSlot(Objects.requireNonNullElseGet(date, () -> DateUtils.getDate(dayCount)), prayerSlotDTO);
         return ResponseEntity.noContent().build();
