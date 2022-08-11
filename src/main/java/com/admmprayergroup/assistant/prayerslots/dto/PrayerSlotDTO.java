@@ -16,7 +16,6 @@ public class PrayerSlotDTO {
     private Long dayCount;
     private String saintSpeech;
     private String generalSpeech;
-    private String celebratorId;
     private String gospel;
 
     public PrayerSlotDTO() {

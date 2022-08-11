@@ -28,7 +28,7 @@ public abstract class Unit {
     @Column(nullable = false)
     private String presidentName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PrayerSlot> prayerSlots = new HashSet<>(0);
 
     @Column(nullable = false, length = 10)

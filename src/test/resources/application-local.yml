@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://localhost:5432/digital_diocese_test
     username: postgres
-    password: admin1234
+    password: admin

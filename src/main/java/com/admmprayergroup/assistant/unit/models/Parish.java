@@ -4,6 +4,9 @@ import com.admmprayergroup.assistant.unit.dto.ParishLevel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Parish extends Unit {
@@ -14,7 +17,8 @@ public class Parish extends Unit {
     @Column(nullable = false)
     private ParishLevel parishLevel;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vicariate_id", nullable = false)
     private Vicariate affiliatedVicariate;
 
     public String getRegisteredId() {
@@ -40,4 +44,6 @@ public class Parish extends Unit {
     public void setAffiliatedVicariate(Vicariate affiliatedVicariate) {
         this.affiliatedVicariate = affiliatedVicariate;
     }
+
+
 }
