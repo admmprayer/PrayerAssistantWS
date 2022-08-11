@@ -28,11 +28,11 @@ public abstract class Unit {
     @Column(nullable = false)
     private String presidentName;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PrayerSlot> prayerSlots = new HashSet<>(0);
-
     @Column(nullable = false, length = 10)
     private String presidentContactNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PrayerSlot> prayerSlots = new HashSet<>(0);
 
     public Long getId() {
         return id;
@@ -50,6 +50,14 @@ public abstract class Unit {
         this.name = name;
     }
 
+    public String getInChargePriest() {
+        return inChargePriest;
+    }
+
+    public void setInChargePriest(String inChargePriest) {
+        this.inChargePriest = inChargePriest;
+    }
+
     public String getPresidentName() {
         return presidentName;
     }
@@ -64,14 +72,6 @@ public abstract class Unit {
 
     public void setPresidentContactNumber(String presidentContactNumber) {
         this.presidentContactNumber = presidentContactNumber;
-    }
-
-    public String getInChargePriest() {
-        return inChargePriest;
-    }
-
-    public void setInChargePriest(String inChargePriest) {
-        this.inChargePriest = inChargePriest;
     }
 
     public Set<PrayerSlot> getPrayerSlots() {
