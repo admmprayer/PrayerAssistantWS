@@ -42,9 +42,9 @@ public class PrayerSlotBookingController {
     }
 
     @PatchMapping
-    public ResponseEntity<Void> getPrayerSlot(@RequestParam(value = "date", required = false) LocalDate date,
-                                              @RequestParam(value = "count", required = false) Long dayCount,
-                                              @RequestBody PrayerSlotDTO prayerSlotDTO) throws InsufficientParametersException, NotFoundInDatabaseException {
+    public ResponseEntity<Void> updatePrayerSlot(@RequestParam(value = "date", required = false) LocalDate date,
+                                                 @RequestParam(value = "count", required = false) Long dayCount,
+                                                 @RequestBody PrayerSlotDTO prayerSlotDTO) throws InsufficientParametersException, NotFoundInDatabaseException {
         if (ValidatorUtils.isAnyNull(date, dayCount) || ValidatorUtils.isAnyNull(prayerSlotDTO.getSaintSpeech(), prayerSlotDTO.getGeneralSpeech(), prayerSlotDTO.getGospel())) {
             throw new InsufficientParametersException();
         }
