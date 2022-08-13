@@ -63,6 +63,7 @@ public class PrayerSlotServiceImpl implements PrayerSlotService {
             }
             prayerSlotRepository.save(prayerSlot);
             LOGGER.info("Successfully updated prayer slot");
+            return;
         }
         throw new NotFoundInDatabaseException(PrayerSlotRepository.class);
     }
