@@ -1,6 +1,6 @@
-package com.admmprayergroup.assistant.unit.models;
+package com.admmprayergroup.assistant.unit;
 
-import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
+import com.admmprayergroup.assistant.prayerslots.PrayerSlot;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

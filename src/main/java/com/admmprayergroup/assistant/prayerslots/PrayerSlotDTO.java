@@ -1,6 +1,5 @@
-package com.admmprayergroup.assistant.prayerslots.dto;
+package com.admmprayergroup.assistant.prayerslots;
 
-import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
 import com.admmprayergroup.assistant.prayerslots.vo.DateUtils;
 import com.admmprayergroup.assistant.prayerslots.vo.ValidatorUtils;
 import lombok.Getter;

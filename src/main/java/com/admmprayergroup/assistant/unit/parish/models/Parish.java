@@ -1,6 +1,8 @@
-package com.admmprayergroup.assistant.unit.models;
+package com.admmprayergroup.assistant.unit.parish.models;
 
-import com.admmprayergroup.assistant.unit.dto.ParishLevel;
+import com.admmprayergroup.assistant.unit.Unit;
+import com.admmprayergroup.assistant.unit.vicariate.models.Vicariate;
+import com.admmprayergroup.assistant.unit.parish.dto.ParishLevel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

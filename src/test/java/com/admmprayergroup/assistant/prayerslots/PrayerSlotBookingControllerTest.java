@@ -1,6 +1,5 @@
 package com.admmprayergroup.assistant.prayerslots;
 
-import com.admmprayergroup.assistant.prayerslots.dto.PrayerSlotDTO;
 import com.admmprayergroup.assistant.prayerslots.exception.InsufficientParametersException;
 import com.admmprayergroup.assistant.prayerslots.exception.NotFoundInDatabaseException;
 import com.admmprayergroup.assistant.prayerslots.service.PrayerSlotService;

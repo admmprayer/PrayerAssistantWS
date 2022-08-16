@@ -1,6 +1,5 @@
 package com.admmprayergroup.assistant.prayerslots;
 
-import com.admmprayergroup.assistant.prayerslots.dto.PrayerSlotDTO;
 import com.admmprayergroup.assistant.prayerslots.exception.InsufficientParametersException;
 import com.admmprayergroup.assistant.prayerslots.exception.NotFoundInDatabaseException;
 import com.admmprayergroup.assistant.prayerslots.service.PrayerSlotService;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@RequestMapping("v1/api/prayer/slot")
+@RequestMapping("/api/prayer/slot")
 public class PrayerSlotBookingController {
 
     @Autowired

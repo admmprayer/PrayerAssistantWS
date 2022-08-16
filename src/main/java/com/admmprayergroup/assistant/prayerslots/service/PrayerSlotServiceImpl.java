@@ -1,8 +1,8 @@
 package com.admmprayergroup.assistant.prayerslots.service;
 
-import com.admmprayergroup.assistant.prayerslots.dto.PrayerSlotDTO;
+import com.admmprayergroup.assistant.prayerslots.PrayerSlotDTO;
 import com.admmprayergroup.assistant.prayerslots.exception.NotFoundInDatabaseException;
-import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
+import com.admmprayergroup.assistant.prayerslots.PrayerSlot;
 import com.admmprayergroup.assistant.prayerslots.repository.PrayerSlotRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

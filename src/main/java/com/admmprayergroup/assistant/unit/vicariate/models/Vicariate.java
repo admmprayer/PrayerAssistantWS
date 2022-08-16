@@ -1,4 +1,8 @@
-package com.admmprayergroup.assistant.unit.models;
+package com.admmprayergroup.assistant.unit.vicariate.models;
+
+import com.admmprayergroup.assistant.unit.diocese.models.Diocese;
+import com.admmprayergroup.assistant.unit.Unit;
+import com.admmprayergroup.assistant.unit.parish.models.Parish;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

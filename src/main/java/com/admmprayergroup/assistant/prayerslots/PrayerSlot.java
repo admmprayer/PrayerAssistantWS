@@ -1,4 +1,4 @@
-package com.admmprayergroup.assistant.prayerslots.models;
+package com.admmprayergroup.assistant.prayerslots;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.admmprayergroup.assistant.unit.dto;
+package com.admmprayergroup.assistant.unit.parish.dto;
 
 public enum ParishLevel {
 

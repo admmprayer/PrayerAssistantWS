@@ -1,6 +1,6 @@
 package com.admmprayergroup.assistant.prayerslots.repository;
 
-import com.admmprayergroup.assistant.prayerslots.models.PrayerSlot;
+import com.admmprayergroup.assistant.prayerslots.PrayerSlot;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
